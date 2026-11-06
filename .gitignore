@@ -1,7 +1,0 @@
-__pycache__/
-*.pyc
-.venv/
-reports/*
-!reports/example/
-!reports/.gitkeep
-*.egg-info/
