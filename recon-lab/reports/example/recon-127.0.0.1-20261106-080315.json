@@ -1,0 +1,219 @@
+{
+  "target": "127.0.0.1",
+  "summary": {
+    "high": 4,
+    "medium": 3,
+    "low": 7,
+    "info": 4
+  },
+  "findings": [
+    {
+      "title": "Outdated/vulnerable version banner on 2121",
+      "severity": "high",
+      "category": "network",
+      "target": "127.0.0.1",
+      "evidence": "Banner: 220 (vsFTPd 2.3.4) lab-sim",
+      "recommendation": "Upgrade to a supported release and hide version banners where possible.",
+      "fid": "RL-001"
+    },
+    {
+      "title": "Outdated/vulnerable version banner on 2222",
+      "severity": "high",
+      "category": "network",
+      "target": "127.0.0.1",
+      "evidence": "Banner: SSH-2.0-OpenSSH_5.3 lab-sim",
+      "recommendation": "Upgrade to a supported release and hide version banners where possible.",
+      "fid": "RL-002"
+    },
+    {
+      "title": "Outdated/vulnerable version banner on 8080",
+      "severity": "high",
+      "category": "network",
+      "target": "127.0.0.1",
+      "evidence": "Banner: HTTP/1.0 501 Unsupported method ('HEAD')\nServer: Apache/2.2.8 (LabSim) \nDate: Fri, 06 Nov 2026 08:03:15 GMT\nConnection: close\nContent-Type: text/html;charset=utf-8\nContent-Length: 357",
+      "recommendation": "Upgrade to a supported release and hide version banners where possible.",
+      "fid": "RL-003"
+    },
+    {
+      "title": "Exposed path: /.git/HEAD",
+      "severity": "high",
+      "category": "web",
+      "target": "http://127.0.0.1:8080",
+      "evidence": "HTTP 200 for /.git/HEAD: b'ref: refs/heads/main\\n'",
+      "recommendation": "Remove sensitive files from the web root or restrict access.",
+      "fid": "RL-004"
+    },
+    {
+      "title": "Risky service exposed: ftp (lab) on 2121",
+      "severity": "medium",
+      "category": "network",
+      "target": "127.0.0.1",
+      "evidence": "FTP transmits credentials in clear text",
+      "recommendation": "Disable the service, restrict by firewall, or replace with an encrypted alternative.",
+      "fid": "RL-005"
+    },
+    {
+      "title": "Cookie missing security attributes",
+      "severity": "medium",
+      "category": "web",
+      "target": "http://127.0.0.1:8080",
+      "evidence": "SESSIONID lacks: HttpOnly, SameSite",
+      "recommendation": "Set HttpOnly, Secure and SameSite on session cookies.",
+      "fid": "RL-006"
+    },
+    {
+      "title": "Missing security header: content-security-policy",
+      "severity": "medium",
+      "category": "web",
+      "target": "http://127.0.0.1:8080",
+      "evidence": "Mitigates XSS and data injection",
+      "recommendation": "Add the content-security-policy response header.",
+      "fid": "RL-007"
+    },
+    {
+      "title": "Exposed path: /admin",
+      "severity": "low",
+      "category": "web",
+      "target": "http://127.0.0.1:8080",
+      "evidence": "HTTP 200 for /admin: b'<h1>Admin login (simulated)</h1>'",
+      "recommendation": "Remove sensitive files from the web root or restrict access.",
+      "fid": "RL-008"
+    },
+    {
+      "title": "Exposed path: /robots.txt",
+      "severity": "low",
+      "category": "web",
+      "target": "http://127.0.0.1:8080",
+      "evidence": "HTTP 200 for /robots.txt: b'User-agent: *\\nDisallow: /admin\\nDisallow: /backup.zip\\n'",
+      "recommendation": "Remove sensitive files from the web root or restrict access.",
+      "fid": "RL-009"
+    },
+    {
+      "title": "Missing security header: referrer-policy",
+      "severity": "low",
+      "category": "web",
+      "target": "http://127.0.0.1:8080",
+      "evidence": "Limits referrer leakage",
+      "recommendation": "Add the referrer-policy response header.",
+      "fid": "RL-010"
+    },
+    {
+      "title": "Missing security header: x-content-type-options",
+      "severity": "low",
+      "category": "web",
+      "target": "http://127.0.0.1:8080",
+      "evidence": "Prevents MIME sniffing",
+      "recommendation": "Add the x-content-type-options response header.",
+      "fid": "RL-011"
+    },
+    {
+      "title": "Missing security header: x-frame-options",
+      "severity": "low",
+      "category": "web",
+      "target": "http://127.0.0.1:8080",
+      "evidence": "Prevents clickjacking",
+      "recommendation": "Add the x-frame-options response header.",
+      "fid": "RL-012"
+    },
+    {
+      "title": "Server version disclosure",
+      "severity": "low",
+      "category": "web",
+      "target": "http://127.0.0.1:8080",
+      "evidence": "Server: Apache/2.2.8 (LabSim) ",
+      "recommendation": "Suppress version details in the Server header.",
+      "fid": "RL-013"
+    },
+    {
+      "title": "Technology disclosure via X-Powered-By",
+      "severity": "low",
+      "category": "web",
+      "target": "http://127.0.0.1:8080",
+      "evidence": "X-Powered-By: PHP/5.2.4",
+      "recommendation": "Remove the X-Powered-By header.",
+      "fid": "RL-014"
+    },
+    {
+      "title": "Open port 2121/tcp (ftp (lab))",
+      "severity": "info",
+      "category": "network",
+      "target": "127.0.0.1",
+      "evidence": "220 (vsFTPd 2.3.4) lab-sim",
+      "recommendation": "Confirm the service is required; close or firewall it otherwise.",
+      "fid": "RL-015"
+    },
+    {
+      "title": "Open port 2222/tcp (ssh (lab))",
+      "severity": "info",
+      "category": "network",
+      "target": "127.0.0.1",
+      "evidence": "SSH-2.0-OpenSSH_5.3 lab-sim",
+      "recommendation": "Confirm the service is required; close or firewall it otherwise.",
+      "fid": "RL-016"
+    },
+    {
+      "title": "Open port 8080/tcp (http-alt)",
+      "severity": "info",
+      "category": "network",
+      "target": "127.0.0.1",
+      "evidence": "HTTP/1.0 501 Unsupported method ('HEAD')\nServer: Apache/2.2.8 (LabSim) \nDate: Fri, 06 Nov 2026 08:03:15 GMT\nConnection: close\nContent-Type: text/html;charset=utf-8\nContent-Length: 357",
+      "recommendation": "Confirm the service is required; close or firewall it otherwise.",
+      "fid": "RL-017"
+    },
+    {
+      "title": "Missing security header: permissions-policy",
+      "severity": "info",
+      "category": "web",
+      "target": "http://127.0.0.1:8080",
+      "evidence": "Restricts browser feature access",
+      "recommendation": "Add the permissions-policy response header.",
+      "fid": "RL-018"
+    }
+  ],
+  "data": {
+    "resolved": [
+      "127.0.0.1"
+    ],
+    "ports": [
+      {
+        "port": 2121,
+        "state": "open",
+        "service": "ftp (lab)",
+        "banner": "220 (vsFTPd 2.3.4) lab-sim"
+      },
+      {
+        "port": 2222,
+        "state": "open",
+        "service": "ssh (lab)",
+        "banner": "SSH-2.0-OpenSSH_5.3 lab-sim"
+      },
+      {
+        "port": 8080,
+        "state": "open",
+        "service": "http-alt",
+        "banner": "HTTP/1.0 501 Unsupported method ('HEAD')\nServer: Apache/2.2.8 (LabSim) \nDate: Fri, 06 Nov 2026 08:03:15 GMT\nConnection: close\nContent-Type: text/html;charset=utf-8\nContent-Length: 357"
+      }
+    ],
+    "http": {
+      "8080": {
+        "url": "http://127.0.0.1:8080",
+        "paths": {
+          "/robots.txt": 200,
+          "/.git/HEAD": 200,
+          "/admin": 200,
+          "/backup.zip": 404,
+          "/server-status": 404,
+          "/.env": 404
+        },
+        "status": 200,
+        "headers": {
+          "server": "Apache/2.2.8 (LabSim) ",
+          "date": "Fri, 06 Nov 2026 08:03:15 GMT",
+          "content-type": "text/html",
+          "x-powered-by": "PHP/5.2.4",
+          "set-cookie": "SESSIONID=abc123; Path=/"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+[project]
+name = "reconlab"
+version = "1.0.0"
+description = "Controlled Reconnaissance Lab - scope-enforced recon toolkit for learning"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+reconlab = "reconlab.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["reconlab", "lab"]
